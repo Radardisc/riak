@@ -1,0 +1,58 @@
+%% -*- tab-width: 4;erlang-indent-level: 4;indent-tabs-mode: nil -*-
+%% ex: ts=4 sw=4 et
+{application, riak_kv,
+ [
+  {description, "Riak Key/Value Store"},
+  {vsn, git},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  sasl,
+                  crypto,
+                  riak_api,
+                  riak_core,
+                  sidejob,
+                  erlang_js,
+                  mochiweb,
+                  webmachine,
+                  os_mon,
+                  riak_pipe
+                 ]},
+  {registered, []},
+  {mod, {riak_kv_app, []}},
+  {env, [
+         %% Endpoint for system stats HTTP provider
+         {stats_urlpath, "stats"},
+
+         %% Secondary code paths
+         {add_paths, []},
+
+         %% This option toggles compatibility of keylisting with 1.0
+         %% and earlier versions.  Once a rolling upgrade to a version
+         %% > 1.0 is completed for a cluster, this should be set to
+         %% true for better control of memory usage during key listing
+         %% operations
+         {listkeys_backpressure, false},
+
+         %% use the legacy routines for tracking kv stats
+         {legacy_stats, true},
+
+         %% Disable active anti-entropy by default
+         {anti_entropy, {off, []}},
+
+         %% Allow Erlang MapReduce functions to be specified as
+         %% strings.
+         %%
+         %% !!!WARNING!!!
+         %% This will allow arbitrary Erlang code to be submitted
+         %% through the REST and Protocol Buffers interfaces. This
+         %% should only be used for development purposes.
+         {allow_strfun, false},
+
+         %% Log a warning if object bigger than this
+         {warn_object_size, 5000000},
+         %% Log a warning if # of siblings bigger than this
+         {warn_siblings, 25}
+
+        ]}
+ ]}.

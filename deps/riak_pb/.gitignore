@@ -1,0 +1,22 @@
+# Erlang
+.eunit/*
+deps/*
+priv/*
+*.o
+ebin/*.beam
+ebin/riak_pb.app
+include/*_pb.hrl
+doc/*
+.qc
+.eqc-info
+current_counterexample.eqc
+
+# Python
+riak_pb.egg-info
+riak_pb/*_pb2.py
+build
+*.pyc
+dist/*.egg
+
+# Java
+target/*

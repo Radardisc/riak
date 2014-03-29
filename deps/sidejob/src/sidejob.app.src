@@ -1,0 +1,13 @@
+{application, sidejob,
+ [
+  {description, ""},
+  {vsn, "0.2.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {registered, []},
+  {mod, {sidejob_app, []}},
+  {env, []}
+ ]}.
